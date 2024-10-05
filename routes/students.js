@@ -7,7 +7,7 @@ const db = mysql.createConnection({
     host: 'abc-university-db-server.database.windows.net',  // Replace with Azure MySQL hostname
     user: 'chalith',                                        // Replace with your MySQL username
     password: 'Azure*100',                                  // Replace with your MySQL password
-    database: 'studentAppDB',                               // Database name
+    database: 'studentappdb',                               // Database name
     port: 3306                                              // Default MySQL port
 });
 
