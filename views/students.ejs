@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Records Management</h1>
+
+        <!-- Table to display all students -->
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Academic Year</th>
+                    <th>Course</th>
+                    <th>Module</th>
+                    <th>Admission No.</th>
+                    <th>Admission Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (students.length > 0) { %>
+                    <% students.forEach(student => { %>
+                        <tr>
+                            <td><%= student.student_id %></td>
+                            <td><%= student.student_name %></td>
+                            <td><%= student.academic_year %></td>
+                            <td><%= student.course %></td>
+                            <td><%= student.module %></td>
+                            <td><%= student.admission %></td>
+                            <td><%= student.admission_date.toDateString() %></td>
+                            <td>
+                                <!-- Delete Form -->
+                                <form action="/delete/<%= student.student_id %>" method="POST">
+                                    <button class="delete-btn" type="submit">Delete</button>
+                                </form>
+                                <!-- Update Form -->
+                                <form action="/update/<%= student.student_id %>" method="POST" style="display:inline;">
+                                    <button class="edit-btn" type="submit">Edit</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8">No students found</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <!-- Form to add new student -->
+        <h2>Add New Student</h2>
+        <form class="add-student-form" action="/add" method="POST">
+            <input type="text" name="student_id" placeholder="Student ID (e.g., IT20198404)" required>
+            <input type="text" name="student_name" placeholder="Student Name (e.g., Chalith)" required>
+            <input type="number" name="academic_year" placeholder="Academic Year (e.g., 2024)" required>
+            <input type="text" name="course" placeholder="Course (e.g., Information Technology)" required>
+            <input type="text" name="module" placeholder="Module (e.g., Cloud Computing)" required>
+            <input type="number" name="admission" placeholder="Admission No. (e.g., 01)" required>
+            <input type="date" name="admission_date" placeholder="Admission Date" required>
+            <button type="submit" class="add-btn">Add Student</button>
+        </form>
+    </div>
+</body>
+</html>

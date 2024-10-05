@@ -1,0 +1,62 @@
+const express = require('express');
+const mysql = require('mysql2');
+const router = express.Router();
+
+// MySQL database connection (modify with your MySQL settings)
+const db = mysql.createConnection({
+    host: 'localhost',           // If using XAMPP, use 'localhost'
+    user: 'root',                // Default MySQL user for XAMPP is 'root'
+    password: '',                // Default password for root is empty
+    database: 'studentappdb',    // Use the database you created in phpMyAdmin
+    port: 3306                   // Default MySQL port
+});
+
+// Connect to MySQL
+db.connect((err) => {
+    if (err) {
+        console.error('Database connection failed:', err.stack);
+        return;
+    }
+    console.log('Connected to MySQL Database!');
+});
+
+// CRUD Routes
+
+// GET all students
+router.get('/', (req, res) => {
+    db.query('SELECT * FROM students', (err, results) => {
+        if (err) throw err;
+        res.render('students', { students: results });
+    });
+});
+
+// POST to add a new student
+router.post('/add', (req, res) => {
+    const { student_id, student_name, academic_year, course, module, admission, admission_date } = req.body;
+    const query = 'INSERT INTO students (student_id, student_name, academic_year, course, module, admission, admission_date) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [student_id, student_name, academic_year, course, module, admission, admission_date], (err, result) => {
+        if (err) throw err;
+        res.redirect('/');
+    });
+});
+
+// POST to update a student
+router.post('/update/:id', (req, res) => {
+    const { student_name, academic_year, course, module, admission, admission_date } = req.body;
+    const query = 'UPDATE students SET student_name=?, academic_year=?, course=?, module=?, admission=?, admission_date=? WHERE student_id=?';
+    db.query(query, [student_name, academic_year, course, module, admission, admission_date, req.params.id], (err, result) => {
+        if (err) throw err;
+        res.redirect('/');
+    });
+});
+
+// POST to delete a student
+router.post('/delete/:id', (req, res) => {
+    const query = 'DELETE FROM students WHERE student_id=?';
+    db.query(query, [req.params.id], (err, result) => {
+        if (err) throw err;
+        res.redirect('/');
+    });
+});
+
+module.exports = router;
