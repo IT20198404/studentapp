@@ -2,13 +2,13 @@ const express = require('express');
 const mysql = require('mysql2');
 const router = express.Router();
 
-// MySQL database connection (modify with your MySQL settings)
+// Database Connection (Update these with your Azure MySQL details)
 const db = mysql.createConnection({
-    host: 'localhost',           // If using XAMPP, use 'localhost'
-    user: 'root',                // Default MySQL user for XAMPP is 'root'
-    password: '',                // Default password for root is empty
-    database: 'studentappdb',    // Use the database you created in phpMyAdmin
-    port: 3306                   // Default MySQL port
+    host: 'abc-university-db-server.database.windows.net',  // Replace with Azure MySQL hostname
+    user: 'chalith',                                        // Replace with your MySQL username
+    password: 'Azure*100',                                  // Replace with your MySQL password
+    database: 'studentAppDB',                               // Database name
+    port: 3306                                              // Default MySQL port
 });
 
 // Connect to MySQL
