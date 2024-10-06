@@ -5,7 +5,7 @@ const router = express.Router();
 // Database Connection (Update these with your Azure MySQL details)
 const db = mysql.createConnection({
     host: 'abc-university-db-server.database.windows.net',  // Replace with Azure MySQL hostname
-    user: 'chalith',                                        // Replace with your MySQL username
+    user: 'admin@chalith',                                        // Replace with your MySQL username
     password: 'Azure*100',                                  // Replace with your MySQL password
     database: 'studentappdb',                               // Database name
     port: 1433                                              // Default MySQL port
