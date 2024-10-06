@@ -8,7 +8,7 @@ const db = mysql.createConnection({
     user: 'chalith',                                        // Replace with your MySQL username
     password: 'Azure*100',                                  // Replace with your MySQL password
     database: 'studentappdb',                               // Database name
-    port: 1430                                              // Default MySQL port
+    port: 1433                                              // Default MySQL port
 });
 
 // Connect to MySQL
