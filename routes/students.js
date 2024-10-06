@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const router = express.Router();
-/*
+
 // Database Connection (Update these with your Azure MySQL details)
 const db = mysql.createConnection({
     host: 'abc-university-db-server.database.windows.net',  // Replace with Azure MySQL hostname
@@ -60,4 +60,3 @@ router.post('/delete/:id', (req, res) => {
 });
 
 module.exports = router;
-*/
